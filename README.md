@@ -4,12 +4,13 @@ A local-only, refined repository version of a private Notion study tree about JA
 
 ## Scope
 
-This repo now treats the original root export and the three sub-page exports as one coherent note set:
+This repo now treats the original root export and the four sub-page exports as one coherent note set:
 
 - `jax-scaling-book.zip`
 - `jax-scaling-book_LLM-System-Design.zip`
 - `jax-scaling-book_Training-how-to-scael.zip`
 - `jax-scaling-book_llma2CPP.zip`
+- `jax-scaling-book_Inference.zip`
 
 The goal of this refinement pass is to preserve the original structure and wording as much as possible while filling in missing material from the sub-page exports, normalizing the notes into natural English, fixing grammar, and keeping unsupported additions to a minimum.
 
@@ -23,12 +24,14 @@ The goal of this refinement pass is to preserve the original structure and wordi
 - `docs/tpu-systems.md` — TPU architecture, memory hierarchy, pod networking, and mesh/sharding notes
 - `docs/communication.md` — collective communication patterns and where they appear in model systems
 - `docs/tensor-parallelism.md` — column-parallel vs. row-parallel patterns and transformer block communication points
+- `docs/inference-systems.md` — prefill vs. decode, KV cache, inference bottlenecks, batching, and serving-engine design patterns
 
 ### New material integrated from missed sub-page exports
 
 - `docs/training-scaling.md` — data, tensor, FSDP/ZeRO, and pipeline parallel training notes
 - `docs/llm-serving-system-design.md` — TP/DP/PP trade-offs, KV cache, paged KV, continuous batching, chunked prefill, and decoding-oriented systems notes
 - `docs/llama2-cpp.md` — config interpretation, RoPE notes, and weight tying notes from the `llama2.cpp` export
+- `docs/inference-systems.md` — a new standalone inference chapter integrated from the `Inference` sub-page export
 
 ### Supporting files
 
@@ -62,7 +65,7 @@ Compared with the earlier pass, this repo now explicitly incorporates the three 
 
 Some source sections are still intentionally conservative because the exported notes themselves remain outline-like or partially ambiguous. In particular, these areas may need your review if you want a deeper second pass:
 
-- `Part_7 Inference` from the root page is still mostly a pointer rather than a full standalone chapter
+- `Part_7 Inference` from the root page is now backed by a dedicated inference note, but some subsections remain outline-like in the source
 - `Part_12 GPUs` remains a short outline rather than a fully developed note set
 - the numeric placeholders `6`, `8`, and `11` are still not clearly defined in the source
 - some formulas and rule-of-thumb serving estimates in the LLM systems notes should be treated as study notes, not production benchmarks

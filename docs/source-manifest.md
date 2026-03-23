@@ -10,6 +10,7 @@ This pass refined the existing repo in place using the full set of Notion export
 | `jax-scaling-book_LLM-System-Design.zip` | yes | yes | Sub-page export referenced by the root notes |
 | `jax-scaling-book_Training-how-to-scael.zip` | yes | yes | Sub-page export referenced by the root notes |
 | `jax-scaling-book_llma2CPP.zip` | yes | yes | Sub-page export referenced by the root notes |
+| `jax-scaling-book_Inference.zip` | yes | yes | Sub-page export referenced by the root notes |
 
 ## Unified source content manifest
 
@@ -36,12 +37,20 @@ This pass refined the existing repo in place using the full set of Notion export
 | `jax-scaling-book_Training-how-to-scael.zip` | `image 1.png` | FSDP/ZeRO diagram | skipped | — | The textual explanation was sufficient for this pass. |
 | `jax-scaling-book_Training-how-to-scael.zip` | `image 2.png` | Tensor parallelism diagram | skipped | — | The main logic was integrated into text-based docs. |
 | `jax-scaling-book_llma2CPP.zip` | `Llama2 cpp 322bb8eb37cc8001957dcd3f68877e5f.md` | Llama2.cpp | processed | `docs/llama2-cpp.md`; `README.md`; `resume/experience-bullets.md` | Added the previously missed implementation-oriented notes on config interpretation, RoPE, and weight tying. |
+| `jax-scaling-book_Inference.zip` | `Inference 321bb8eb37cc80499da5c8506e66a585.md` | Inference | processed | `docs/inference-systems.md`; `README.md`; `docs/overview.md` | Added a dedicated inference doc covering prefill vs. decode, KV cache complexity, inference bottlenecks, distribution strategy, and serving-engine design patterns. |
+| `jax-scaling-book_Inference.zip` | `image.png` | Prefill and generation tensor-flow diagram | skipped | — | The tensor-shape content was preserved directly in text, so the image was not required. |
+| `jax-scaling-book_Inference.zip` | `Screenshot_from_2026-03-12_18-43-01.png` | Decoding latency formula screenshot | skipped | — | The latency heuristic was rewritten directly in Markdown, so the screenshot was not necessary. |
+| `jax-scaling-book_Inference.zip` | `Screenshot_from_2026-03-12_18-43-28.png` | Decoding latency trade-off screenshot | skipped | — | The small-batch vs. large-batch trade-off was preserved in text. |
+| `jax-scaling-book_Inference.zip` | `image 1.png` | Tensor-parallel inference diagram | skipped | — | The TP plus communication flow was preserved in text without keeping the diagram. |
+| `jax-scaling-book_Inference.zip` | `image 2.png` | Batched prefill-then-generate diagram | skipped | — | The serving pattern was documented in prose without requiring the image. |
+| `jax-scaling-book_Inference.zip` | `image 3.png` | Interleaved prefill and decode diagram | skipped | — | The scheduling pattern was documented in prose without requiring the image. |
+| `jax-scaling-book_Inference.zip` | `image 4.png` | Disaggregated inference diagram | skipped | — | The disaggregated serving design was preserved in text without keeping the image. |
 | `jax-scaling-book_llma2CPP.zip` | `Deep_Learning-47.jpeg` | RoPE illustration | skipped | — | The mathematical notes were kept in text and the image was not strictly necessary. |
 | `jax-scaling-book_llma2CPP.zip` | `image.png` | Config diagram | skipped | — | The config fields were clearer when rewritten directly into Markdown. |
 
 ## Skipped or unclear items
 
-- `Part_7 Inference` in the root export remains mostly a placeholder rather than a developed chapter.
+- `Part_7 Inference` in the root export is now backed by the dedicated `Inference` sub-page export, but some subsections still remain outline-like or unfinished.
 - `Part_12 GPUs` is still an outline with only light detail in the source.
 - The numeric placeholders `6`, `8`, and `11` remain unclear in the root export.
 - The `MoE` image from the root export could still be added later if you want a more visual section.
@@ -49,7 +58,8 @@ This pass refined the existing repo in place using the full set of Notion export
 
 ## Main gaps fixed from the previous pass
 
-1. The repo now inspects and incorporates **all four archives**, not just the root archive.
-2. The three sub-page exports are now represented as actual docs rather than just unresolved pointers.
+1. The repo now inspects and incorporates **all five archives**, not just the root archive.
+2. The four sub-page exports are now represented as actual docs rather than just unresolved pointers.
 3. The source manifest now tracks the complete source set and clearly records processed, skipped, and unclear items.
 4. The README now reflects the full study tree rather than implying the repo came from one long root-page outline only.
+5. The inference section now has a dedicated doc instead of remaining mostly a placeholder in the root notes.

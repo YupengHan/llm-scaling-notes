@@ -5,15 +5,16 @@
 The study tree is not a single polished manuscript. It is a multi-export Notion note set made up of:
 
 - one root page export
-- three sub-page exports that were previously only referenced from the root page
+- four sub-page exports that were previously only referenced from the root page
 - a mix of outlines, equations, rules of thumb, screenshots, implementation notes, and interview-style reasoning
 
-The four source archives are now treated as one coherent set:
+The five source archives are now treated as one coherent set:
 
 - `jax-scaling-book.zip`
 - `jax-scaling-book_LLM-System-Design.zip`
 - `jax-scaling-book_Training-how-to-scael.zip`
 - `jax-scaling-book_llma2CPP.zip`
+- `jax-scaling-book_Inference.zip`
 
 ## Priority roadmap
 
@@ -76,12 +77,13 @@ The repo still follows the original study flow, but it now includes the previous
 - training-scale notes from the sub-page export now live in `docs/training-scaling.md`
 - LLM serving and system-design notes from the sub-page export now live in `docs/llm-serving-system-design.md`
 - implementation-oriented `llama2.cpp` notes now live in `docs/llama2-cpp.md`
+- inference-stage systems notes now live in `docs/inference-systems.md`
 
 ## Sections still needing review
 
 These parts remain intentionally conservative because the source is still outline-like or ambiguous in those areas:
 
-- `Part_7 Inference` from the root export is still not a full standalone chapter
+- `Part_7 Inference` from the root export is now supported by `docs/inference-systems.md`, but some source subsections are still outline-like
 - `Part_12 GPUs` is still brief in the source
 - `Transformer architecture` appears mostly as external links
 - the unlabeled items `8`, `6`, and `11` are still unclear

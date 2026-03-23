@@ -53,12 +53,12 @@ The goal of this refinement pass is to preserve the original structure and wordi
 
 ## Important improvements in this pass
 
-Compared with the earlier pass, this repo now explicitly incorporates the three exported sub-pages that were previously only referenced from the root notes:
+Compared with the earlier pass, this repo now explicitly incorporates the four exported sub-pages that were previously only referenced from the root notes:
 
 - **LLM System Design** now has its own document with serving-oriented system design notes
 - **Training how to scale** now has its own document with training parallelism and sharded-array communication notes
 - **Llama2.cpp** now has its own document covering configuration, RoPE, and weight tying
-- the source manifest now tracks all four archives instead of only the root archive
+- the source manifest now tracks all five archives instead of only the root archive
 - the README no longer treats the root page as the only meaningful source
 
 ## Notes for review

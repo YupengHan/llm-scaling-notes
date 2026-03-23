@@ -10,12 +10,13 @@ The source starts by mapping config fields to transformer notation.
 - `F = config.hidden_dim`
 - `L = config.n_layers`
 - `N = config.n_heads`
-- `K = config.n_kv_heads`
+- `K = config.n_kv_heads` as the conceptual KV-head count, even though the referenced code path does not fully realize grouped KV behavior the way a modern GQA implementation would
 - `V = config.vocab_size`
 - `H = D / N`
 - `B = 1` in the referenced code path
 - `T = 1` for each forward step in decode
 - `S = current cache length = pos + 1`, with an upper bound of `config.seq_len`
+- `config.seq_len` is the maximum context length or KV-cache capacity, not the current `S` at every step
 
 The notes also distinguish between physical storage shape and logical interpretation:
 
@@ -31,17 +32,17 @@ RoPE rotates every two dimensions of a head vector as a 2D plane.
 For one 2D block:
 
 \[
-R(lpha) =
-egin{bmatrix}
-\cos lpha & -\sin lpha \
-\sin lpha & \cos lpha
+R(\alpha) =
+\begin{bmatrix}
+\cos \alpha & -\sin \alpha \\
+\sin \alpha & \cos \alpha
 \end{bmatrix}
 \]
 
 The source highlights the useful identity:
 
 \[
-R(lpha)^T = R(-lpha)
+R(\alpha)^T = R(-\alpha)
 \]
 
 ### Applying RoPE to Q and K
@@ -49,16 +50,16 @@ R(lpha)^T = R(-lpha)
 If query `q` comes from position `m` and key `k` comes from position `n`, then after RoPE:
 
 \[
-q' = R(m	heta)q
+q' = R(m\theta)q
 \]
 \[
-k' = R(n	heta)k
+k' = R(n\theta)k
 \]
 
 The resulting attention score becomes:
 
 \[
-(q')^T k' = q^T R((n-m)	heta) k
+(q')^T k' = q^T R((n-m)\theta) k
 \]
 
 ### Main conclusion

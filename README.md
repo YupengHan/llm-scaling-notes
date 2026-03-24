@@ -1,4 +1,4 @@
-# JAX Scale Learning
+# LLM Scaling Notes
 
 A local-only, refined repository version of a private Notion study tree about JAX scaling, transformer systems, TPU/GPU performance, distributed training, and LLM serving design.
 

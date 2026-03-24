@@ -52,7 +52,7 @@ This pass refined the existing repo in place using the full set of Notion export
 
 - `Part_7 Inference` in the root export is now backed by the dedicated `Inference` sub-page export, but some subsections still remain outline-like or unfinished.
 - `Part_12 GPUs` is still an outline with only light detail in the source.
-- The numeric placeholders `6`, `8`, and `11` remain unclear in the root export.
+- `Part_6 Training LLaMA`, `Part_8 Serving LLaMA`, and `Part_11 Conclusions` are now identified, but they are still only lightly developed in the source.
 - The `MoE` image from the root export could still be added later if you want a more visual section.
 - The system-design file contains some duplicated content blocks; this pass kept the strongest cleaned version rather than repeating all duplicates.
 

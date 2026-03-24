@@ -36,9 +36,9 @@ The five source archives are now treated as one coherent set:
 ### Later-pass priority
 
 - `2_TPU`
-- `8`
-- `6`
-- `11`
+- `Part_8 Serving LLaMA`
+- `Part_6 Training LLaMA`
+- `Part_11 Conclusions`
 
 ## Core goals stated in the source
 
@@ -86,5 +86,5 @@ These parts remain intentionally conservative because the source is still outlin
 - `Part_7 Inference` from the root export is now supported by `docs/inference-systems.md`, but some source subsections are still outline-like
 - `Part_12 GPUs` is still brief in the source
 - `Transformer architecture` appears mostly as external links
-- the unlabeled items `8`, `6`, and `11` are still unclear
+- `Part_6 Training LLaMA`, `Part_8 Serving LLaMA`, and `Part_11 Conclusions` are now identified, but they still need a fuller pass
 - some hardware-number examples in the serving notes should be treated as study heuristics rather than polished benchmarks

@@ -54,7 +54,7 @@ The strongest current coverage is:
 
 ## ToDo
 
-- expand the unfinished root-source areas tracked in [`docs/overview.md`](docs/overview.md), especially `Part_12 GPUs`, the link-heavy transformer architecture section, and the unresolved items `6`, `8`, and `11`
+- expand the unfinished root-source areas tracked in [`docs/overview.md`](docs/overview.md), especially `Part_12 GPUs`, the link-heavy transformer architecture section, and the still-light sections `Part_6 Training LLaMA`, `Part_8 Serving LLaMA`, and `Part_11 Conclusions`
 - deepen [`docs/inference-systems.md`](docs/inference-systems.md) by turning `Prefix Caching`, `JetStream`, and the external latency/throughput references into self-contained notes
 - expand the brief mentions of Megatron-style model parallelism and sequence parallelism in [`docs/tensor-parallelism.md`](docs/tensor-parallelism.md) and [`docs/training-scaling.md`](docs/training-scaling.md)
 - rewrite the partially developed application examples in [`docs/communication.md`](docs/communication.md), especially MLP communication flow and GPU-serving trade-offs

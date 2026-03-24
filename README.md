@@ -1,71 +1,68 @@
 # LLM Scaling Notes
 
-A local-only, refined repository version of a private Notion study tree about JAX scaling, transformer systems, TPU/GPU performance, distributed training, and LLM serving design.
+A self-study repository on LLM inference, model systems, and scaling. The material is centered on JAX/ML scaling topics and extended with serving, communication, and hardware-focused notes that are directly relevant to `LLM Inference Performance Engineer` work.
+
+## Project Goal
+
+This repo is meant to serve as a public technical study portfolio. It documents how I think about:
+
+- inference bottlenecks across prefill and decode
+- roofline analysis, arithmetic intensity, and bandwidth limits
+- transformer design choices that affect serving cost and latency
+- KV-cache layout, memory pressure, and batching trade-offs
+- tensor, data, and pipeline parallelism plus collective communication
+- TPU/GPU architecture, memory hierarchy, and interconnect behavior
 
 ## Scope
 
-This repo now treats the original root export and the four sub-page exports as one coherent note set:
+The repository started from private study notes based on JAX scaling material and has been reorganized into a cleaner public set of Markdown docs. It is not a production inference framework or a benchmark suite. The emphasis is on systems understanding, design trade-offs, and performance-oriented reasoning.
 
-- `jax-scaling-book.zip`
-- `jax-scaling-book_LLM-System-Design.zip`
-- `jax-scaling-book_Training-how-to-scael.zip`
-- `jax-scaling-book_llma2CPP.zip`
-- `jax-scaling-book_Inference.zip`
+## Current Status
 
-The goal of this refinement pass is to preserve the original structure and wording as much as possible while filling in missing material from the sub-page exports, normalizing the notes into natural English, fixing grammar, and keeping unsupported additions to a minimum.
+This is an active study repository, not a finished handbook. Some docs are already solid first-pass writeups, while others are still partial, conservative, or only lightly expanded from the original notes.
 
-## What is in this repo
+The strongest current coverage is:
 
-### Core study notes
+- roofline reasoning and arithmetic intensity
+- transformer cost structure, KV cache, and attention-related bottlenecks
+- tensor parallelism, communication collectives, and serving trade-offs
+- inference-stage concepts such as prefill vs. decode, batching, and KV-cache-driven performance limits
 
-- `docs/overview.md` — scope, priorities, and the core framing from the root page
+## Repo Map
+
+### Core systems and performance notes
+
+- `docs/overview.md` — scope, priorities, the study roadmap, and currently known gaps
 - `docs/roofline.md` — roofline thinking, arithmetic intensity, BF16, and communication rooflines
 - `docs/transformer-systems.md` — transformer FLOPs, attention structure, GQA, MoE, KV cache, and FlashAttention notes
-- `docs/tpu-systems.md` — TPU architecture, memory hierarchy, pod networking, and mesh/sharding notes
+- `docs/tpu-systems.md` — compact first-pass notes on TPU architecture, memory hierarchy, pod networking, and mesh/sharding
 - `docs/communication.md` — collective communication patterns and where they appear in model systems
 - `docs/tensor-parallelism.md` — column-parallel vs. row-parallel patterns and transformer block communication points
-- `docs/inference-systems.md` — prefill vs. decode, KV cache, inference bottlenecks, batching, and serving-engine design patterns
 
-### New material integrated from missed sub-page exports
+### Inference and serving focus
+
+- `docs/inference-systems.md` — prefill vs. decode, KV cache, inference bottlenecks, batching, and serving-engine design patterns
+- `docs/llm-serving-system-design.md` — TP/DP/PP trade-offs, paged KV cache, continuous batching, chunked prefill, and decoding-oriented system design notes
+- `docs/llama2-cpp.md` — implementation-oriented notes on config interpretation, RoPE, KV cache, and weight tying
+
+### Training and supporting material
 
 - `docs/training-scaling.md` — data, tensor, FSDP/ZeRO, and pipeline parallel training notes
-- `docs/llm-serving-system-design.md` — TP/DP/PP trade-offs, KV cache, paged KV, continuous batching, chunked prefill, and decoding-oriented systems notes
-- `docs/llama2-cpp.md` — config interpretation, RoPE notes, and weight tying notes from the `llama2.cpp` export
-- `docs/inference-systems.md` — a new standalone inference chapter integrated from the `Inference` sub-page export
+- `docs/source-manifest.md` — source mapping for the original study materials
+- `resume/experience-bullets.md` — resume-facing bullets derived from the study work
+- `assets/images/` — diagrams used where they materially support the notes
 
-### Supporting files
+## ToDo
 
-- `docs/source-manifest.md` — archive-by-archive source manifest and mapping notes
-- `resume/experience-bullets.md` — resume-facing derivative bullets kept separate from the study docs
-- `assets/images/` — selected images kept only where they materially support the notes
+- expand the unfinished root-source areas tracked in [`docs/overview.md`](docs/overview.md), especially `Part_12 GPUs`, the link-heavy transformer architecture section, and the unresolved items `6`, `8`, and `11`
+- deepen [`docs/inference-systems.md`](docs/inference-systems.md) by turning `Prefix Caching`, `JetStream`, and the external latency/throughput references into self-contained notes
+- expand the brief mentions of Megatron-style model parallelism and sequence parallelism in [`docs/tensor-parallelism.md`](docs/tensor-parallelism.md) and [`docs/training-scaling.md`](docs/training-scaling.md)
+- rewrite the partially developed application examples in [`docs/communication.md`](docs/communication.md), especially MLP communication flow and GPU-serving trade-offs
+- optionally add a few missing visuals, such as the MoE diagram referenced in [`docs/source-manifest.md`](docs/source-manifest.md), where they improve understanding rather than just decorate the notes
 
-## Editing approach
+## What To Expect
 
-- kept everything local only
-- did not create a GitHub remote
-- did not push anything
-- refined the existing repo in place rather than replacing it from scratch
-- preserved the original wording and study sequence where possible
-- added the previously missed sub-page content conservatively
-- normalized mixed Chinese/English source notes into natural English
-- fixed grammar, spelling, and Markdown structure where needed
-- flagged unclear or underspecified items rather than inventing content
-
-## Important improvements in this pass
-
-Compared with the earlier pass, this repo now explicitly incorporates the four exported sub-pages that were previously only referenced from the root notes:
-
-- **LLM System Design** now has its own document with serving-oriented system design notes
-- **Training how to scale** now has its own document with training parallelism and sharded-array communication notes
-- **Llama2.cpp** now has its own document covering configuration, RoPE, and weight tying
-- the source manifest now tracks all five archives instead of only the root archive
-- the README no longer treats the root page as the only meaningful source
-
-## Notes for review
-
-Some source sections are still intentionally conservative because the exported notes themselves remain outline-like or partially ambiguous. In particular, these areas may need your review if you want a deeper second pass:
-
-- `Part_7 Inference` from the root page is now backed by a dedicated inference note, but some subsections remain outline-like in the source
-- `Part_12 GPUs` remains a short outline rather than a fully developed note set
-- the numeric placeholders `6`, `8`, and `11` are still not clearly defined in the source
-- some formulas and rule-of-thumb serving estimates in the LLM systems notes should be treated as study notes, not production benchmarks
+- These are study notes and technical writeups, not polished production docs.
+- Not every topic in the repo is equally complete yet; the open gaps are tracked above in `ToDo`.
+- Some sections remain conservative where the original material was outline-like or ambiguous.
+- Quantitative rules of thumb in serving sections should be read as study material, not as validated production benchmarks.

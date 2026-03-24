@@ -48,7 +48,6 @@ The strongest current coverage is:
 ### Training and supporting material
 
 - `docs/training-scaling.md` — data, tensor, FSDP/ZeRO, and pipeline parallel training notes
-- `docs/source-manifest.md` — source mapping for the original study materials
 - `resume/experience-bullets.md` — resume-facing bullets derived from the study work
 - `assets/images/` — diagrams used where they materially support the notes
 
@@ -58,7 +57,7 @@ The strongest current coverage is:
 - deepen [`docs/inference-systems.md`](docs/inference-systems.md) by turning `Prefix Caching`, `JetStream`, and the external latency/throughput references into self-contained notes
 - expand the brief mentions of Megatron-style model parallelism and sequence parallelism in [`docs/tensor-parallelism.md`](docs/tensor-parallelism.md) and [`docs/training-scaling.md`](docs/training-scaling.md)
 - rewrite the partially developed application examples in [`docs/communication.md`](docs/communication.md), especially MLP communication flow and GPU-serving trade-offs
-- optionally add a few missing visuals, such as the MoE diagram referenced in [`docs/source-manifest.md`](docs/source-manifest.md), where they improve understanding rather than just decorate the notes
+- optionally add a few missing visuals, such as a MoE diagram, where they improve understanding rather than just decorate the notes
 
 ## What To Expect
 

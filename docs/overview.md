@@ -67,11 +67,12 @@ The note set repeatedly returns to the same reasoning loop:
 
 ## How this repo is organized
 
-The repo still follows the original study flow, but it now includes the previously missed sub-page material:
+The repo still follows the original study flow, but it now includes the previously missed sub-page material plus one added systems note on deep learning compilers:
 
 - overview and roadmap material stays here
 - roofline material lives in `docs/roofline.md`
 - transformer and attention cost notes live in `docs/transformer-systems.md`
+- deep learning compiler notes live in `docs/deep-learning-compiler.md`
 - TPU hardware notes live in `docs/tpu-systems.md`
 - communication and tensor-parallel notes are split into dedicated docs
 - training-scale notes from the sub-page export now live in `docs/training-scaling.md`
@@ -88,3 +89,4 @@ These parts remain intentionally conservative because the source is still outlin
 - `Transformer architecture` appears mostly as external links
 - `Part_6 Training LLaMA`, `Part_8 Serving LLaMA`, and `Part_11 Conclusions` are now identified, but they still need a fuller pass
 - some hardware-number examples in the serving notes should be treated as study heuristics rather than polished benchmarks
+- `docs/deep-learning-compiler.md` is a synthesized first-pass note rather than a direct export from the original Notion set, so it should later be expanded with more concrete examples from XLA, TVM, TensorRT, and TorchInductor

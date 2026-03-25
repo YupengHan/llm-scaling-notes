@@ -1,6 +1,6 @@
 # LLM Scaling Notes
 
-A self-study repository on LLM inference, model systems, and scaling. The material is centered on JAX/ML scaling topics and extended with serving, communication, and hardware-focused notes that are directly relevant to `LLM Inference Performance Engineer` work.
+A self-study repository on LLM inference, model systems, scaling, and the compiler/runtime ideas that connect model graphs to hardware. The material is centered on JAX/ML scaling topics and extended with serving, communication, hardware-focused notes, and a first-pass deep learning compiler writeup that is directly relevant to `LLM Inference Performance Engineer` work.
 
 ## Project Goal
 
@@ -12,10 +12,11 @@ This repo is meant to serve as a public technical study portfolio. It documents 
 - KV-cache layout, memory pressure, and batching trade-offs
 - tensor, data, and pipeline parallelism plus collective communication
 - TPU/GPU architecture, memory hierarchy, and interconnect behavior
+- framework/runtime/compiler/backend separation, IR levels, graph lowering, and hardware-aware optimization choices
 
 ## Scope
 
-The repository started from private study notes based on JAX scaling material and has been reorganized into a cleaner public set of Markdown docs. It is not a production inference framework or a benchmark suite. The emphasis is on systems understanding, design trade-offs, and performance-oriented reasoning.
+The repository started from private study notes based on JAX scaling material and has been reorganized into a cleaner public set of Markdown docs. It is not a production inference framework or a benchmark suite. The emphasis is on systems understanding, design trade-offs, performance-oriented reasoning, and the compiler/runtime concepts that connect graph-level model descriptions to real hardware execution.
 
 ## Current Status
 
@@ -27,6 +28,7 @@ The strongest current coverage is:
 - transformer cost structure, KV cache, and attention-related bottlenecks
 - tensor parallelism, communication collectives, and serving trade-offs
 - inference-stage concepts such as prefill vs. decode, batching, and KV-cache-driven performance limits
+- deep learning compiler stack concepts such as framework/runtime/compiler/backend roles, IR levels, data layout, operator fusion, tiling, and backend-specific optimization
 
 ## Repo Map
 
@@ -35,6 +37,7 @@ The strongest current coverage is:
 - `docs/overview.md` — scope, priorities, the study roadmap, and currently known gaps
 - `docs/roofline.md` — roofline thinking, arithmetic intensity, BF16, and communication rooflines
 - `docs/transformer-systems.md` — transformer FLOPs, attention structure, GQA, MoE, KV cache, and FlashAttention notes
+- `docs/deep-learning-compiler.md` — framework/runtime/compiler/backend roles, high-level vs. low-level IR, data layout, and frontend/backend optimization passes
 - `docs/tpu-systems.md` — compact first-pass notes on TPU architecture, memory hierarchy, pod networking, and mesh/sharding
 - `docs/communication.md` — collective communication patterns and where they appear in model systems
 - `docs/tensor-parallelism.md` — column-parallel vs. row-parallel patterns and transformer block communication points
@@ -58,6 +61,7 @@ The strongest current coverage is:
 - expand the brief mentions of Megatron-style model parallelism and sequence parallelism in [`docs/tensor-parallelism.md`](docs/tensor-parallelism.md) and [`docs/training-scaling.md`](docs/training-scaling.md)
 - rewrite the partially developed application examples in [`docs/communication.md`](docs/communication.md), especially MLP communication flow and GPU-serving trade-offs
 - optionally add a few missing visuals, such as a MoE diagram, where they improve understanding rather than just decorate the notes
+- deepen [`docs/deep-learning-compiler.md`](docs/deep-learning-compiler.md) with more concrete examples from XLA, TVM, TensorRT, and TorchInductor, and tighten the distinction between graph-level optimization and loop/kernel-level optimization
 
 ## What To Expect
 

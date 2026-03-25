@@ -1,71 +1,53 @@
 # LLM Scaling Notes
 
-A self-study repository on LLM inference, model systems, scaling, and the compiler/runtime ideas that connect model graphs to hardware. The material is centered on JAX/ML scaling topics and extended with serving, communication, hardware-focused notes, and a first-pass deep learning compiler writeup that is directly relevant to `LLM Inference Performance Engineer` work.
+A curated collection of LLM systems notes, reorganized from private study work into a public repository. The repo focuses on inference, training and scaling, serving, communication, GPU/TPU systems, and compiler/runtime concepts, with an emphasis on hardware-aware reasoning, bottleneck analysis, and performance trade-offs.
 
-## Project Goal
+## What this repo covers
 
-This repo is meant to serve as a public technical study portfolio. It documents how I think about:
-
-- inference bottlenecks across prefill and decode
 - roofline analysis, arithmetic intensity, and bandwidth limits
-- transformer design choices that affect serving cost and latency
-- KV-cache layout, memory pressure, and batching trade-offs
-- tensor, data, and pipeline parallelism plus collective communication
-- TPU/GPU architecture, memory hierarchy, and interconnect behavior
-- framework/runtime/compiler/backend separation, IR levels, graph lowering, and hardware-aware optimization choices
+- transformer cost structure, attention behavior, and KV-cache bottlenecks
+- prefill vs. decode performance behavior and inference-stage constraints
+- tensor, data, pipeline, and serving-time parallelism plus collective communication
+- TPU/GPU architecture, memory hierarchy, and interconnect-aware reasoning
+- serving design trade-offs such as batching, cache management, and request scheduling
+- compiler/runtime/backend concepts that connect model graphs to hardware execution
 
-## Scope
+## Recommended starting points
 
-The repository started from private study notes based on JAX scaling material and has been reorganized into a cleaner public set of Markdown docs. It is not a production inference framework or a benchmark suite. The emphasis is on systems understanding, design trade-offs, performance-oriented reasoning, and the compiler/runtime concepts that connect graph-level model descriptions to real hardware execution.
+- [`docs/roofline.md`](docs/roofline.md) — start here for roofline thinking, arithmetic intensity, and bandwidth-limited performance.
+- [`docs/transformer-systems.md`](docs/transformer-systems.md) — transformer compute structure, attention cost, GQA, KV cache, and FlashAttention-related reasoning.
+- [`docs/inference-systems.md`](docs/inference-systems.md) — prefill vs. decode, latency/throughput heuristics, and inference bottlenecks.
+- [`docs/training-scaling.md`](docs/training-scaling.md) — training-side scaling strategies across data, tensor, FSDP/ZeRO, and pipeline parallelism.
+- [`docs/tpu-systems.md`](docs/tpu-systems.md) — TPU architecture, memory hierarchy, pod topology, and mesh/sharding concepts.
+- [`docs/llm-serving-system-design.md`](docs/llm-serving-system-design.md) — serving layouts, batching strategies, paged KV cache, and decode-oriented system trade-offs.
+- [`docs/deep-learning-compiler.md`](docs/deep-learning-compiler.md) — framework/runtime/compiler/backend roles, IR levels, graph lowering, and hardware-aware optimization passes.
 
-## Current Status
-
-This is an active study repository, not a finished handbook. Some docs are already solid first-pass writeups, while others are still partial, conservative, or only lightly expanded from the original notes.
-
-The strongest current coverage is:
-
-- roofline reasoning and arithmetic intensity
-- transformer cost structure, KV cache, and attention-related bottlenecks
-- tensor parallelism, communication collectives, and serving trade-offs
-- inference-stage concepts such as prefill vs. decode, batching, and KV-cache-driven performance limits
-- deep learning compiler stack concepts such as framework/runtime/compiler/backend roles, IR levels, data layout, operator fusion, tiling, and backend-specific optimization
-
-## Repo Map
+## Repo map
 
 ### Core systems and performance notes
 
-- `docs/overview.md` — scope, priorities, the study roadmap, and currently known gaps
-- `docs/roofline.md` — roofline thinking, arithmetic intensity, BF16, and communication rooflines
-- `docs/transformer-systems.md` — transformer FLOPs, attention structure, GQA, MoE, KV cache, and FlashAttention notes
-- `docs/deep-learning-compiler.md` — framework/runtime/compiler/backend roles, high-level vs. low-level IR, data layout, and frontend/backend optimization passes
-- `docs/tpu-systems.md` — compact first-pass notes on TPU architecture, memory hierarchy, pod networking, and mesh/sharding
-- `docs/communication.md` — collective communication patterns and where they appear in model systems
-- `docs/tensor-parallelism.md` — column-parallel vs. row-parallel patterns and transformer block communication points
+- [`docs/overview.md`](docs/overview.md) — deeper framing for the repo, its systems lens, and how the material is organized.
+- [`docs/roofline.md`](docs/roofline.md) — roofline reasoning, arithmetic intensity, and communication-aware performance limits.
+- [`docs/transformer-systems.md`](docs/transformer-systems.md) — transformer FLOPs, attention structure, KV cache, and model-side cost drivers.
+- [`docs/deep-learning-compiler.md`](docs/deep-learning-compiler.md) — compiler/runtime/backend separation, IR levels, data layout, and lowering/optimization flow.
+- [`docs/tpu-systems.md`](docs/tpu-systems.md) — TPU architecture, memory hierarchy, networking, and mesh-based execution.
+- [`docs/communication.md`](docs/communication.md) — collective communication patterns and where they appear in distributed model systems.
+- [`docs/tensor-parallelism.md`](docs/tensor-parallelism.md) — tensor-parallel execution patterns and communication points inside transformer blocks.
 
 ### Inference and serving focus
 
-- `docs/inference-systems.md` — prefill vs. decode, KV cache, inference bottlenecks, batching, and serving-engine design patterns
-- `docs/llm-serving-system-design.md` — TP/DP/PP trade-offs, paged KV cache, continuous batching, chunked prefill, and decoding-oriented system design notes
-- `docs/llama2-cpp.md` — implementation-oriented notes on config interpretation, RoPE, KV cache, and weight tying
+- [`docs/inference-systems.md`](docs/inference-systems.md) — inference-stage behavior from KV-cache reuse to decode latency and throughput constraints.
+- [`docs/llm-serving-system-design.md`](docs/llm-serving-system-design.md) — system design trade-offs for batching, cache management, and serving architecture.
+- [`docs/llama2-cpp.md`](docs/llama2-cpp.md) — implementation-oriented notes on config interpretation, RoPE, KV cache, and weight tying.
 
 ### Training and supporting material
 
-- `docs/training-scaling.md` — data, tensor, FSDP/ZeRO, and pipeline parallel training notes
-- `resume/experience-bullets.md` — resume-facing bullets derived from the study work
-- `assets/images/` — diagrams used where they materially support the notes
+- [`docs/training-scaling.md`](docs/training-scaling.md) — training parallelism strategies and scaling trade-offs across the stack.
+- [`resume/experience-bullets.md`](resume/experience-bullets.md) — resume-facing bullets distilled from the technical work in this repo.
+- [`assets/images/`](assets/images/) — diagrams referenced throughout the notes.
 
-## ToDo
+## Notes on scope
 
-- expand the unfinished root-source areas tracked in [`docs/overview.md`](docs/overview.md), especially `Part_12 GPUs`, the link-heavy transformer architecture section, and the still-light sections `Part_6 Training LLaMA`, `Part_8 Serving LLaMA`, and `Part_11 Conclusions`
-- deepen [`docs/inference-systems.md`](docs/inference-systems.md) by turning `Prefix Caching`, `JetStream`, and the external latency/throughput references into self-contained notes
-- expand the brief mentions of Megatron-style model parallelism and sequence parallelism in [`docs/tensor-parallelism.md`](docs/tensor-parallelism.md) and [`docs/training-scaling.md`](docs/training-scaling.md)
-- rewrite the partially developed application examples in [`docs/communication.md`](docs/communication.md), especially MLP communication flow and GPU-serving trade-offs
-- optionally add a few missing visuals, such as a MoE diagram, where they improve understanding rather than just decorate the notes
-- deepen [`docs/deep-learning-compiler.md`](docs/deep-learning-compiler.md) with more concrete examples from XLA, TVM, TensorRT, and TorchInductor, and tighten the distinction between graph-level optimization and loop/kernel-level optimization
-
-## What To Expect
-
-- These are study notes and technical writeups, not polished production docs.
-- Not every topic in the repo is equally complete yet; the open gaps are tracked above in `ToDo`.
-- Some sections remain conservative where the original material was outline-like or ambiguous.
-- Quantitative rules of thumb in serving sections should be read as study material, not as validated production benchmarks.
+- This is a technical study and documentation repository, not a production inference framework or benchmark suite.
+- Depth varies by topic, but the throughline is systems reasoning under hardware and execution constraints.
+- Quantitative heuristics in the notes are for performance reasoning and trade-off analysis, not production guarantees.

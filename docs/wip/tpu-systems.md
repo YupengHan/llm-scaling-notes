@@ -2,7 +2,7 @@
 
 ## TPU architecture
 
-![TPU architecture](../assets/images/tpu-architecture.png)
+![TPU architecture](../../assets/images/tpu-architecture.png)
 
 The source describes a TPU as a system built around compute engines plus a layered memory hierarchy.
 
@@ -25,7 +25,7 @@ The source also includes concrete TPU bandwidth figures, such as HBM, ICI, and D
 
 ## TPU pod networking
 
-![TPU network topology](../assets/images/tpu-network-topology.png)
+![TPU network topology](../../assets/images/tpu-network-topology.png)
 
 The source describes TPU pod interconnect evolution roughly as:
 
@@ -52,9 +52,9 @@ The TPU notes are less about memorizing hardware trivia and more about building 
 
 The source also includes a short explanation of mesh-based sharding.
 
-![Mesh sharding example 1](../assets/images/mesh-sharding-example-1.png)
+![Mesh sharding example 1](../../assets/images/mesh-sharding-example-1.png)
 
-![Mesh sharding example 2](../assets/images/mesh-sharding-example-2.png)
+![Mesh sharding example 2](../../assets/images/mesh-sharding-example-2.png)
 
 A mesh names device axes, and sharding maps tensor dimensions onto those mesh axes. The source example explains that a shard stores only a fraction of the full tensor determined by the sizes of the mapped mesh axes.
 

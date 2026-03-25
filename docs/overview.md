@@ -28,9 +28,9 @@ If you are skimming the repo, the best entry points are:
 - `docs/roofline.md`
 - `docs/transformer-systems.md`
 - `docs/inference-systems.md`
-- `docs/training-scaling.md`
-- `docs/tpu-systems.md`
+- `docs/communication.md`
 - `docs/llm-serving-system-design.md`
+- `docs/deep-learning-compiler.md`
 
 Overall, this repository is intended to demonstrate:
 
@@ -38,5 +38,39 @@ Overall, this repository is intended to demonstrate:
 - systems-oriented reasoning instead of isolated paper summaries
 - the ability to move between theory, hardware constraints, and implementation tradeoffs
 - a habit of turning raw research notes into organized technical documentation
+
+## Current layout
+
+Most reader-facing notes live directly under `docs/`. Active work that still needs a fuller pass now lives under `docs/wip/`.
+
+Reader-facing docs currently include:
+
+- `docs/roofline.md`
+- `docs/transformer-systems.md`
+- `docs/inference-systems.md`
+- `docs/communication.md`
+- `docs/tensor-parallelism.md`
+- `docs/llm-serving-system-design.md`
+- `docs/llama2-cpp.md`
+- `docs/deep-learning-compiler.md`
+
+Current WIP docs:
+
+- `docs/wip/tpu-systems.md`
+- `docs/wip/training-scaling.md`
+
+## Progress snapshot
+
+The git history now shows two clear phases of work:
+
+- March 22, 2026: the initial public doc set landed across roofline, transformer systems, tensor parallelism, serving, TPU notes, training notes, and implementation notes
+- March 23-25, 2026: deeper passes landed for inference systems, communication, `llama2.cpp`, repo framing, and the new deep learning compiler note
+
+The current explicit TODO bucket is:
+
+- `docs/wip/tpu-systems.md`
+- `docs/wip/training-scaling.md`
+
+Other older backlog ideas have not been started yet. They remain follow-up work rather than active in-progress edits.
 
 The repo is still evolving, but the core focus is stable: understanding LLM training and inference as end-to-end systems problems, not just modeling problems.

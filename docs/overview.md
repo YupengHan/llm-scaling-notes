@@ -1,76 +1,34 @@
 # Overview
 
-This repository is a curated collection of my learning notes on LLM systems, originally developed in Notion and later reorganized into a repo-first format.
+This repo is a systems-oriented set of notes on how LLM workloads actually execute. The throughline is not just model architecture, but the full path from transformer math to hardware behavior: roofline limits, tensor shapes, collective communication, KV-cache growth, serving schedulers, and the compiler/runtime layers that turn graphs into kernels.
 
-Rather than trying to be a polished textbook or a broad survey of everything in modern AI, this repo is meant to show how I think through LLM systems from first principles: how model architecture interacts with hardware, where training and inference costs come from, how communication and memory become bottlenecks, and how system design choices should be made under real constraints.
+Most of the writing is organized around one practical question: what is the real bottleneck? Across the docs, that usually means separating compute-bound from bandwidth-bound work, understanding when communication becomes the scaling limit, and tracing how layout, sharding, batching, and runtime choices change end-to-end performance.
 
-Across these notes, I focus on questions such as:
+The repo is therefore less a broad survey of "all LLM topics" and more a focused notebook on performance reasoning for inference, serving, distributed execution, and adjacent systems concerns.
 
-- how GPUs and TPUs execute LLM workloads
-- how transformer computations map to hardware limits
-- how to estimate compute, memory, and communication cost
-- how to reason about parallelism strategies for training and inference
-- how to identify the actual bottleneck before optimizing the wrong metric
+## Documents
 
-A recurring theme throughout the repo is that benchmark gains matter less if they come with equivalent losses in system efficiency. Many of the notes use roofline reasoning and bottleneck analysis to connect model behavior with hardware realities such as memory bandwidth, interconnect cost, and device utilization.
+### Core performance models
 
-This repo is organized around a few core systems topics:
+- `docs/roofline.md` — introduces the repo's basic performance lens: arithmetic intensity, compute vs. memory vs. communication time, and why roofline reasoning is the right starting point for system analysis.
+- `docs/transformer-systems.md` — breaks transformer cost into projections, core attention, KV-cache growth, FlashAttention, MoE communication, and the rules of thumb that connect model structure to hardware cost.
 
-- roofline modeling
-- transformer and attention cost analysis
-- TPU / GPU system fundamentals
-- training and scaling tradeoffs
-- inference and serving design
-- implementation-oriented notes such as `llama2.cpp`
+### Distributed execution and communication
 
-If you are skimming the repo, the best entry points are:
+- `docs/communication.md` — explains the main collectives, why local math can still require global synchronization, and how communication shows up concretely inside tensor-parallel transformer blocks.
+- `docs/tensor-parallelism.md` — gives the compact row-parallel vs. column-parallel mental model for transformer layers and identifies where all-reduce actually appears inside attention and MLP blocks.
 
-- `docs/roofline.md`
-- `docs/transformer-systems.md`
-- `docs/inference-systems.md`
-- `docs/communication.md`
-- `docs/llm-serving-system-design.md`
-- `docs/deep-learning-compiler.md`
+### Inference and serving systems
 
-Overall, this repository is intended to demonstrate:
+- `docs/inference-systems.md` — covers prefill vs. decode, tensor shapes during inference, KV-cache reuse, decode-time bottlenecks, latency/throughput heuristics, and common serving-engine layouts.
+- `docs/llm-serving-system-design.md` — focuses on serving decisions from the GPU execution side: TP/DP/PP trade-offs, KV-cache placement, paged attention, continuous batching, chunked prefill, and prefill/decode disaggregation.
 
-- structured self-driven learning across the LLM stack
-- systems-oriented reasoning instead of isolated paper summaries
-- the ability to move between theory, hardware constraints, and implementation tradeoffs
-- a habit of turning raw research notes into organized technical documentation
+### Implementation and compiler/runtime notes
 
-## Current layout
+- `docs/llama2-cpp.md` — uses `llama2.cpp` as an implementation anchor for config-to-shape mapping, RoPE mechanics, KV-cache interpretation, and the practical meaning of weight tying.
+- `docs/deep-learning-compiler.md` — explains the framework/runtime/compiler/backend split, multi-level IR, layout decisions, graph lowering, and the low-level optimization vocabulary behind deep learning compilers.
 
-Most reader-facing notes live directly under `docs/`. Active work that still needs a fuller pass now lives under `docs/wip/`.
+### WIP extensions
 
-Reader-facing docs currently include:
-
-- `docs/roofline.md`
-- `docs/transformer-systems.md`
-- `docs/inference-systems.md`
-- `docs/communication.md`
-- `docs/tensor-parallelism.md`
-- `docs/llm-serving-system-design.md`
-- `docs/llama2-cpp.md`
-- `docs/deep-learning-compiler.md`
-
-Current WIP docs:
-
-- `docs/wip/tpu-systems.md`
-- `docs/wip/training-scaling.md`
-
-## Progress snapshot
-
-The git history now shows two clear phases of work:
-
-- March 22, 2026: the initial public doc set landed across roofline, transformer systems, tensor parallelism, serving, TPU notes, training notes, and implementation notes
-- March 23-25, 2026: deeper passes landed for inference systems, communication, `llama2.cpp`, repo framing, and the new deep learning compiler note
-
-The current explicit TODO bucket is:
-
-- `docs/wip/tpu-systems.md`
-- `docs/wip/training-scaling.md`
-
-Other older backlog ideas have not been started yet. They remain follow-up work rather than active in-progress edits.
-
-The repo is still evolving, but the core focus is stable: understanding LLM training and inference as end-to-end systems problems, not just modeling problems.
+- `docs/wip/tpu-systems.md` — a compact TPU-focused note on MXU/VPU structure, VMEM vs. HBM, pod interconnect hierarchy, and mesh/sharding intuition that still needs a fuller pass.
+- `docs/wip/training-scaling.md` — a training-side summary of data parallelism, FSDP/ZeRO, tensor parallelism, pipeline parallelism, and collective behavior that still needs expansion.

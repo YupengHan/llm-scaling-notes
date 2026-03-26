@@ -32,3 +32,4 @@ The repo is therefore less a broad survey of "all LLM topics" and more a focused
 
 - [`docs/wip/tpu-systems.md`](wip/tpu-systems.md) — a compact TPU-focused note on MXU/VPU structure, VMEM vs. HBM, pod interconnect hierarchy, and mesh/sharding intuition that still needs a fuller pass.
 - [`docs/wip/training-scaling.md`](wip/training-scaling.md) — a training-side summary of data parallelism, FSDP/ZeRO, tensor parallelism, pipeline parallelism, and collective behavior that still needs expansion.
+- [`docs/triton/wip_triton_overview_en.md`](triton/wip_triton_overview_en.md) — a Triton/Hopper note on blocked programming, CTA clusters, DSMEM, and the execution model behind custom GPU kernel work.

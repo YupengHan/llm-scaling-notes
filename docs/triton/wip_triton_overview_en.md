@@ -6,7 +6,7 @@ This note summarizes how I think about Triton and the Hopper-era GPU execution m
 
 The diagram below is a **conceptual mapping**, not a strict one-to-one hardware equivalence.
 
-![Conceptual hardware mapping for Triton notes](../../assets/images/dsa_architecture_mapping.png)
+![Conceptual hardware mapping for Triton notes](../../assets/images/dsa-architecture-mapping.png)
 
 ### Buffer hierarchy
 
@@ -45,67 +45,7 @@ A **CTA (Cooperative Thread Array)** is the CUDA term for a **thread block**.
 
 This is why Triton feels much closer to **block-level reasoning** than to explicit per-thread scheduling.
 
-## 4. Hopper thread block clusters
-
-Hopper adds an optional hierarchy level between the grid and the block: the **thread block cluster**.
-
-### What changes with clusters
-
-![Conceptual hardware mapping for Triton notes](../../assets/images/gpc_layout.png)
-
-- Blocks in the same cluster are guaranteed to run concurrently on SMs within the same **GPC(GPU Processing Cluster)**.
-- Blocks in a cluster can read, write, and perform atomics on one another’s shared memory.
-- NVIDIA refers to this cluster-visible shared memory space as **Distributed Shared Memory (DSMEM)**.
-- Cross-block synchronization inside a cluster is available through `cooperative_groups::cluster_group` and `cluster.sync()`.
-- Intra-cluster (Inside): Co-scheduled & Simultaneous.
-- Inter-cluster (Between): Randomly scheduled & Independent.
-
-### Why this matters
-
-Clusters extend the working set and communication scope beyond a single block. That creates a useful middle ground between:
-
-- **local shared memory**, which is fast but limited to one block, and
-- **global memory**, which is flexible but much slower for repeated fine-grained communication.
-
-For some kernels, DSMEM lets you keep intermediate communication on chip instead of round-tripping through global memory.
-
-### Practical notes
-
-- `__cluster_dims__(x, y, z)` sets cluster dimensions at compile time.
-- Cluster dimensions can also be configured at runtime with `cudaLaunchKernelEx`.
-- The grid is still expressed in **blocks**, so the total number of launched blocks should be a multiple of the cluster size.
-- The **portable** maximum cluster size is **8 blocks**. Hopper H100 can opt into a **nonportable** cluster size of 16.
-
-### Minimal CUDA example
-
-```cpp
-#include <cooperative_groups.h>
-namespace cg = cooperative_groups;
-
-__global__ void __cluster_dims__(2, 1, 1) cluster_demo(int* out) {
-    __shared__ int smem;
-
-    cg::cluster_group cluster = cg::this_cluster();
-    int block_rank = cluster.block_rank();
-
-    if (threadIdx.x == 0 && block_rank == 0) {
-        smem = 99;
-    }
-
-    // Ensure block 0 has written before block 1 reads.
-    cluster.sync();
-
-    if (threadIdx.x == 0 && block_rank == 1) {
-        int* peer = cluster.map_shared_rank(&smem, 0);
-        out[0] = *peer;
-    }
-
-    // Ensure remote DSMEM access finishes before either block exits.
-    cluster.sync();
-}
-```
-
-## 5. Triton knobs that matter on Hopper
+## 4. Triton knobs that matter on Hopper
 
 ### `num_ctas`
 
@@ -144,44 +84,7 @@ A standard Triton matmul kernel usually has four kinds of inputs:
 
 The most important practical point is that **strides define how a logical tensor maps to physical memory**, while **block sizes define which tile each Triton program instance computes**.
 
-## 6. Tensor Memory Accelerator (TMA)
-
-Hopper introduces the **Tensor Memory Accelerator (TMA)** for bulk asynchronous copies.
-
-### What TMA changes
-
-Compared with older global-to-shared copy flows, TMA moves more of the work into dedicated hardware:
-
-- a thread issues a **descriptor-based** copy,
-- the descriptor carries tensor shape, strides, and block coordinates,
-- address generation and bulk data movement are handled by hardware,
-- synchronization is tied to **barriers** that track both thread arrival and transfer completion.
-
-This reduces per-element address-generation overhead and makes it easier to overlap data movement with computation.
-
-### Supported directions and cluster behavior
-
-On Hopper-class GPUs, TMA supports bulk copies such as:
-
-- **global → shared::cta**
-- **global → shared::cluster**
-- **shared::cta → global**
-- **shared::cta → shared::cluster**
-
-Within a cluster, TMA also supports **multicast**, where one global-memory read can populate the shared memory of multiple blocks. In CUDA’s documentation, this multicast path is specifically optimized for **`sm_90a`**.
-
-### Barrier model
-
-Hopper also introduces the **asynchronous transaction barrier** model used by TMA-style transfers.
-
-The key idea is that the barrier does not only count whether threads have arrived. It also tracks whether the expected number of bytes has arrived. A wait only completes when:
-
-1. participating threads have arrived, and
-2. the expected transaction count has been satisfied.
-
-That is a more precise model than a pure control-flow barrier such as `__syncthreads()`.
-
-## 7. Tensor descriptors in Triton
+## 5. Tensor descriptors in Triton
 
 Triton exposes descriptor-style access through `tl.make_tensor_descriptor`.
 
@@ -213,7 +116,7 @@ A few practical constraints matter:
 - the last dimension must be contiguous,
 - current support is limited to **2D to 5D tensors**.
 
-## 8. Why this matters for LLM kernel work
+## 6. Why this matters for LLM kernel work
 
 For LLM-oriented kernels, these features matter because they target the two bottlenecks that appear over and over again:
 
@@ -227,7 +130,7 @@ A practical mental model is:
 - use **clusters / DSMEM** when cross-block cooperation is valuable,
 - use **descriptors and TMA** when bulk tensor movement becomes the bottleneck.
 
-## 9. References
+## 7. References
 
 ### ToDo
 

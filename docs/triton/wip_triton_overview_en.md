@@ -2,7 +2,7 @@
 
 ## [WIP] Hands-on Triton
 
-triton_vecadd_tmaload
+[VecAdd_TMALoad](triton_vecadd_tmaload.md)
 
 - [x] Simple kernel
 - [x] Vector add

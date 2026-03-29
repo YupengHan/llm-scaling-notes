@@ -1,5 +1,18 @@
 # Triton Overview
 
+## [WIP] Hands-on Triton
+
+triton_vecadd_tmaload
+
+- [x] Simple kernel
+- [x] Vector add
+- [x] TMA load
+- [ ] MatMul
+- [ ] Dropout
+- [ ] LayerNorm
+- [ ] FlashAttention 1
+- [ ] FlashAttention 2
+
 This note summarizes how I think about Triton and the Hopper-era GPU execution model behind high-performance LLM kernels. I keep the focus on concepts that are useful for custom kernel work and safe to show in a portfolio: blocked programming, CUDA execution hierarchy, cluster-level cooperation, and Hopper’s asynchronous data-movement model.
 
 ## 1. A DSA-style mental model

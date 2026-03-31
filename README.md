@@ -9,10 +9,10 @@ A curated collection of LLM systems notes, reorganized from private study work i
 | File | Last updated |
 | --- | --- |
 | [`docs/overview.md`](docs/overview.md) | `2026-03-25` |
-| [`docs/roofline.md`](docs/roofline.md) | `2026-03-22` |
-| [`docs/transformer-systems.md`](docs/transformer-systems.md) | `2026-03-22` |
-| [`docs/inference-systems.md`](docs/inference-systems.md) | `2026-03-25` |
-| [`docs/communication.md`](docs/communication.md) | `2026-03-25` |
+| [`docs/jax-ml-scaling/roofline.md`](docs/jax-ml-scaling/roofline.md) | `2026-03-22` |
+| [`docs/jax-ml-scaling/transformer-systems.md`](docs/jax-ml-scaling/transformer-systems.md) | `2026-03-22` |
+| [`docs/jax-ml-scaling/inference-systems.md`](docs/jax-ml-scaling/inference-systems.md) | `2026-03-25` |
+| [`docs/jax-ml-scaling/communication.md`](docs/jax-ml-scaling/communication.md) | `2026-03-25` |
 | [`docs/llm-serving-system-design.md`](docs/llm-serving-system-design.md) | `2026-03-25` |
 | [`docs/llama2-cpp.md`](docs/llama2-cpp.md) | `2026-03-25` |
 | [`docs/deep-learning-compiler.md`](docs/deep-learning-compiler.md) | `2026-03-25` |
@@ -22,8 +22,8 @@ A curated collection of LLM systems notes, reorganized from private study work i
 
 | File | Last updated |
 | --- | --- |
-| [`docs/wip/tpu-systems.md`](docs/wip/tpu-systems.md) | `2026-03-25` |
-| [`docs/wip/training-scaling.md`](docs/wip/training-scaling.md) | `2026-03-25` |
+| [`docs/jax-ml-scaling/wip/tpu-systems.md`](docs/jax-ml-scaling/wip/tpu-systems.md) | `2026-03-25` |
+| [`docs/jax-ml-scaling/wip/training-scaling.md`](docs/jax-ml-scaling/wip/training-scaling.md) | `2026-03-25` |
 | [`docs/triton/wip_triton_overview_en.md`](docs/triton/wip_triton_overview_en.md) | `2026-03-29` |
 | [`docs/gpu/hopper.md`](docs/gpu/hopper.md) | `2026-03-27` |
 
@@ -31,4 +31,4 @@ A curated collection of LLM systems notes, reorganized from private study work i
 
 | File | Last updated |
 | --- | --- |
-| [`docs/tensor-parallelism.md`](docs/tensor-parallelism.md) | `2026-03-22` |
+| [`docs/jax-ml-scaling/tensor-parallelism.md`](docs/jax-ml-scaling/tensor-parallelism.md) | `2026-03-22` |

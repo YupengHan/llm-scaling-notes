@@ -28,7 +28,7 @@ This separation works because future tokens do not change the representations of
 
 ## Transformer dimensions and tensor shapes
 
-![Transformer dimension graph](../assets/images/transformer-dimension-graph.png)
+![Transformer dimension graph](../../assets/images/transformer-dimension-graph.png)
 
 The figure above summarizes the main tensor dimensions used in the notes.
 
@@ -278,7 +278,7 @@ Paged attention avoids large amounts of global padding in KV-cache allocation. I
 
 ### Tensor-parallel sharding example
 
-![Tensor-parallel sharding example](../assets/images/tensor-parallel-sharding-example.png)
+![Tensor-parallel sharding example](../../assets/images/tensor-parallel-sharding-example.png)
 
 This figure shows a simple tensor-parallel layout across four TPUs.
 
@@ -335,7 +335,7 @@ One of the most useful parts of the exported notes is the comparison of several 
 
 ### 1. Monolithic batching: prefill together, then generate together
 
-![Prefill and generate slice](../assets/images/prefill-and-generate-slice.png)
+![Prefill and generate slice](../../assets/images/prefill-and-generate-slice.png)
 
 In this layout, a batch is prefetched together and then decoded together on the same slice.
 
@@ -352,7 +352,7 @@ Disadvantages:
 
 ### 2. Interleaved prefill and decode on the same slice
 
-![Interleaved prefill and generate slice](../assets/images/interleaved-prefill-and-generate-slice.png)
+![Interleaved prefill and generate slice](../../assets/images/interleaved-prefill-and-generate-slice.png)
 
 In this design:
 
@@ -374,7 +374,7 @@ Trade-offs:
 
 ### 3. Disaggregated prefill and decode
 
-![Disaggregated prefill and generate system](../assets/images/disaggregated-prefill-and-generate-system.png)
+![Disaggregated prefill and generate system](../../assets/images/disaggregated-prefill-and-generate-system.png)
 
 This figure shows a more modern large-scale serving layout:
 

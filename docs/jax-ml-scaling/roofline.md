@@ -37,7 +37,7 @@ The same roofline logic is also used informally for memory traffic.
 
 ## Roofline interpretation
 
-![Roofline overview](../assets/images/roofline-overview.png)
+![Roofline overview](../../assets/images/roofline-overview.png)
 
 The notes describe the standard roofline picture:
 

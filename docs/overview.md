@@ -10,17 +10,17 @@ The repo is therefore less a broad survey of "all LLM topics" and more a focused
 
 ### Core performance models
 
-- [`docs/roofline.md`](roofline.md) — introduces the repo's basic performance lens: arithmetic intensity, compute vs. memory vs. communication time, and why roofline reasoning is the right starting point for system analysis.
-- [`docs/transformer-systems.md`](transformer-systems.md) — breaks transformer cost into projections, core attention, KV-cache growth, FlashAttention, MoE communication, and the rules of thumb that connect model structure to hardware cost.
+- [`docs/jax-ml-scaling/roofline.md`](jax-ml-scaling/roofline.md) — introduces the repo's basic performance lens: arithmetic intensity, compute vs. memory vs. communication time, and why roofline reasoning is the right starting point for system analysis.
+- [`docs/jax-ml-scaling/transformer-systems.md`](jax-ml-scaling/transformer-systems.md) — breaks transformer cost into projections, core attention, KV-cache growth, FlashAttention, MoE communication, and the rules of thumb that connect model structure to hardware cost.
 
 ### Distributed execution and communication
 
-- [`docs/communication.md`](communication.md) — explains the main collectives, why local math can still require global synchronization, and how communication shows up concretely inside tensor-parallel transformer blocks.
-- [`docs/tensor-parallelism.md`](tensor-parallelism.md) — gives the compact row-parallel vs. column-parallel mental model for transformer layers and identifies where all-reduce actually appears inside attention and MLP blocks.
+- [`docs/jax-ml-scaling/communication.md`](jax-ml-scaling/communication.md) — explains the main collectives, why local math can still require global synchronization, and how communication shows up concretely inside tensor-parallel transformer blocks.
+- [`docs/jax-ml-scaling/tensor-parallelism.md`](jax-ml-scaling/tensor-parallelism.md) — gives the compact row-parallel vs. column-parallel mental model for transformer layers and identifies where all-reduce actually appears inside attention and MLP blocks.
 
 ### Inference and serving systems
 
-- [`docs/inference-systems.md`](inference-systems.md) — covers prefill vs. decode, tensor shapes during inference, KV-cache reuse, decode-time bottlenecks, latency/throughput heuristics, and common serving-engine layouts.
+- [`docs/jax-ml-scaling/inference-systems.md`](jax-ml-scaling/inference-systems.md) — covers prefill vs. decode, tensor shapes during inference, KV-cache reuse, decode-time bottlenecks, latency/throughput heuristics, and common serving-engine layouts.
 - [`docs/llm-serving-system-design.md`](llm-serving-system-design.md) — focuses on serving decisions from the GPU execution side: TP/DP/PP trade-offs, KV-cache placement, paged attention, continuous batching, chunked prefill, and prefill/decode disaggregation.
 
 ### Implementation and compiler/runtime notes
@@ -30,6 +30,6 @@ The repo is therefore less a broad survey of "all LLM topics" and more a focused
 
 ### WIP extensions
 
-- [`docs/wip/tpu-systems.md`](wip/tpu-systems.md) — a compact TPU-focused note on MXU/VPU structure, VMEM vs. HBM, pod interconnect hierarchy, and mesh/sharding intuition that still needs a fuller pass.
-- [`docs/wip/training-scaling.md`](wip/training-scaling.md) — a training-side summary of data parallelism, FSDP/ZeRO, tensor parallelism, pipeline parallelism, and collective behavior that still needs expansion.
+- [`docs/jax-ml-scaling/wip/tpu-systems.md`](jax-ml-scaling/wip/tpu-systems.md) — a compact TPU-focused note on MXU/VPU structure, VMEM vs. HBM, pod interconnect hierarchy, and mesh/sharding intuition that still needs a fuller pass.
+- [`docs/jax-ml-scaling/wip/training-scaling.md`](jax-ml-scaling/wip/training-scaling.md) — a training-side summary of data parallelism, FSDP/ZeRO, tensor parallelism, pipeline parallelism, and collective behavior that still needs expansion.
 - [`docs/triton/wip_triton_overview_en.md`](triton/wip_triton_overview_en.md) — a Triton/Hopper note on blocked programming, CTA clusters, DSMEM, and the execution model behind custom GPU kernel work.

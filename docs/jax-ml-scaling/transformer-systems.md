@@ -32,7 +32,7 @@ For the standard contractions that show up repeatedly in transformer cost accoun
 | matrix-vector multiply | `A[N,P] @ x[P]` | `2NP` |
 | matrix-matrix multiply | `A[N,P] @ B[P,M]` | `2NPM` |
 
-![Contracting and batching](../assets/images/matmul-contracting-and-batching.png)
+![Contracting and batching](../../assets/images/matmul-contracting-and-batching.png)
 
 These simple contractions are enough to explain the well-known transformer training rule of thumb.
 
@@ -60,7 +60,7 @@ That estimate is useful, but only under the usual caveats: dense blocks, reasona
 
 ## Transformer block: where the cost actually comes from
 
-![Transformer dimension graph](../assets/images/transformer-dimension-graph.png)
+![Transformer dimension graph](../../assets/images/transformer-dimension-graph.png)
 
 A useful systems split is:
 

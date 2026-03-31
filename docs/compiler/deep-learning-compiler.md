@@ -67,7 +67,7 @@ PyTorch (framework)
 
 ## Generic Architecture of a Deep Learning Compiler
 
-![Generic compiler framework for deep neural networks](../assets/images/deep-learning-compiler-framework.png)
+![Generic compiler framework for deep neural networks](../../assets/images/deep-learning-compiler-framework.png)
 
 *Figure: A generic front-end → IR → optimization → back-end pipeline for deep neural networks.*
 

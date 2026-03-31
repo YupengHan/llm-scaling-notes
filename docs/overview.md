@@ -26,7 +26,7 @@ The repo is therefore less a broad survey of "all LLM topics" and more a focused
 ### Implementation and compiler/runtime notes
 
 - [`docs/llama2-cpp.md`](llama2-cpp.md) — uses `llama2.cpp` as an implementation anchor for config-to-shape mapping, RoPE mechanics, KV-cache interpretation, and the practical meaning of weight tying.
-- [`docs/deep-learning-compiler.md`](deep-learning-compiler.md) — explains the framework/runtime/compiler/backend split, multi-level IR, layout decisions, graph lowering, and the low-level optimization vocabulary behind deep learning compilers.
+- [`docs/compiler/deep-learning-compiler.md`](compiler/deep-learning-compiler.md) — explains the framework/runtime/compiler/backend split, multi-level IR, layout decisions, graph lowering, and the low-level optimization vocabulary behind deep learning compilers.
 
 ### WIP extensions
 

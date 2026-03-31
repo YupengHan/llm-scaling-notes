@@ -21,11 +21,11 @@ The repo is therefore less a broad survey of "all LLM topics" and more a focused
 ### Inference and serving systems
 
 - [`docs/jax-ml-scaling/inference-systems.md`](jax-ml-scaling/inference-systems.md) — covers prefill vs. decode, tensor shapes during inference, KV-cache reuse, decode-time bottlenecks, latency/throughput heuristics, and common serving-engine layouts.
-- [`docs/llm-serving-system-design.md`](llm-serving-system-design.md) — focuses on serving decisions from the GPU execution side: TP/DP/PP trade-offs, KV-cache placement, paged attention, continuous batching, chunked prefill, and prefill/decode disaggregation.
+- [`docs/ml-systems-practice/llm-serving-system-design.md`](ml-systems-practice/llm-serving-system-design.md) — focuses on serving decisions from the GPU execution side: TP/DP/PP trade-offs, KV-cache placement, paged attention, continuous batching, chunked prefill, and prefill/decode disaggregation.
 
 ### Implementation and compiler/runtime notes
 
-- [`docs/llama2-cpp.md`](llama2-cpp.md) — uses `llama2.cpp` as an implementation anchor for config-to-shape mapping, RoPE mechanics, KV-cache interpretation, and the practical meaning of weight tying.
+- [`docs/ml-systems-practice/llama2-cpp.md`](ml-systems-practice/llama2-cpp.md) — uses `llama2.cpp` as an implementation anchor for config-to-shape mapping, RoPE mechanics, KV-cache interpretation, and the practical meaning of weight tying.
 - [`docs/compiler/deep-learning-compiler.md`](compiler/deep-learning-compiler.md) — explains the framework/runtime/compiler/backend split, multi-level IR, layout decisions, graph lowering, and the low-level optimization vocabulary behind deep learning compilers.
 
 ### WIP extensions

@@ -8,28 +8,42 @@ The repo is therefore less a broad survey of "all LLM topics" and more a focused
 
 ## Documents
 
-### Core performance models
+The notes are grouped by folder, so the easiest way to read the repo is to treat each directory as a small topic cluster.
 
-- [`docs/jax-ml-scaling/roofline.md`](jax-ml-scaling/roofline.md) — introduces the repo's basic performance lens: arithmetic intensity, compute vs. memory vs. communication time, and why roofline reasoning is the right starting point for system analysis.
-- [`docs/jax-ml-scaling/transformer-systems.md`](jax-ml-scaling/transformer-systems.md) — breaks transformer cost into projections, core attention, KV-cache growth, FlashAttention, MoE communication, and the rules of thumb that connect model structure to hardware cost.
+### `docs/jax-ml-scaling/`
 
-### Distributed execution and communication
+This folder is the main path for transformer scaling and systems reasoning: performance models, distributed communication, inference behavior, and hardware-oriented notes about how these workloads map onto TPU execution.
 
-- [`docs/jax-ml-scaling/communication.md`](jax-ml-scaling/communication.md) — explains the main collectives, why local math can still require global synchronization, and how communication shows up concretely inside tensor-parallel transformer blocks.
-- [`docs/jax-ml-scaling/tensor-parallelism.md`](jax-ml-scaling/tensor-parallelism.md) — gives the compact row-parallel vs. column-parallel mental model for transformer layers and identifies where all-reduce actually appears inside attention and MLP blocks.
+- [`docs/jax-ml-scaling/roofline.md`](jax-ml-scaling/roofline.md) — roofline basics for reasoning about compute, memory bandwidth, and communication bottlenecks.
+- [`docs/jax-ml-scaling/transformer-systems.md`](jax-ml-scaling/transformer-systems.md) — transformer cost structure, attention/MLP behavior, KV-cache growth, and system-level rules of thumb.
+- [`docs/jax-ml-scaling/communication.md`](jax-ml-scaling/communication.md) — collective communication basics and where synchronization shows up in tensor-parallel transformer blocks.
+- [`docs/jax-ml-scaling/tensor-parallelism.md`](jax-ml-scaling/tensor-parallelism.md) — row-parallel vs. column-parallel intuition and where all-reduce appears inside attention and MLP layers.
+- [`docs/jax-ml-scaling/inference-systems.md`](jax-ml-scaling/inference-systems.md) — prefill vs. decode, KV-cache reuse, and the main latency/throughput trade-offs in inference engines.
+- [`docs/jax-ml-scaling/tpu-systems.md`](jax-ml-scaling/tpu-systems.md) — TPU architecture, memory hierarchy, slice/Pod networking, and the performance intuition behind VMEM, ICI, and DCN.
+- [`docs/jax-ml-scaling/wip/training-scaling.md`](jax-ml-scaling/wip/training-scaling.md) — WIP note on training-side scaling, including DP, TP, PP, and collective behavior.
 
-### Inference and serving systems
+### `docs/ml-systems-practice/`
 
-- [`docs/jax-ml-scaling/inference-systems.md`](jax-ml-scaling/inference-systems.md) — covers prefill vs. decode, tensor shapes during inference, KV-cache reuse, decode-time bottlenecks, latency/throughput heuristics, and common serving-engine layouts.
-- [`docs/ml-systems-practice/llm-serving-system-design.md`](ml-systems-practice/llm-serving-system-design.md) — focuses on serving decisions from the GPU execution side: TP/DP/PP trade-offs, KV-cache placement, paged attention, continuous batching, chunked prefill, and prefill/decode disaggregation.
+This folder is more implementation-facing: concrete serving design choices and code-oriented model notes.
 
-### Implementation and compiler/runtime notes
+- [`docs/ml-systems-practice/llm-serving-system-design.md`](ml-systems-practice/llm-serving-system-design.md) — practical serving-system design notes around TP/DP/PP, KV-cache layout, paging, batching, and scheduler trade-offs.
+- [`docs/ml-systems-practice/llama2-cpp.md`](ml-systems-practice/llama2-cpp.md) — implementation notes from `llama2.cpp`, focused on config mapping, RoPE, KV-cache layout, and weight tying.
 
-- [`docs/ml-systems-practice/llama2-cpp.md`](ml-systems-practice/llama2-cpp.md) — uses `llama2.cpp` as an implementation anchor for config-to-shape mapping, RoPE mechanics, KV-cache interpretation, and the practical meaning of weight tying.
-- [`docs/compiler/deep-learning-compiler.md`](compiler/deep-learning-compiler.md) — explains the framework/runtime/compiler/backend split, multi-level IR, layout decisions, graph lowering, and the low-level optimization vocabulary behind deep learning compilers.
+### `docs/compiler/`
 
-### WIP extensions
+This folder holds compiler/runtime notes for the path from model graph to hardware execution.
 
-- [`docs/jax-ml-scaling/wip/tpu-systems.md`](jax-ml-scaling/wip/tpu-systems.md) — a compact TPU-focused note on MXU/VPU structure, VMEM vs. HBM, pod interconnect hierarchy, and mesh/sharding intuition that still needs a fuller pass.
-- [`docs/jax-ml-scaling/wip/training-scaling.md`](jax-ml-scaling/wip/training-scaling.md) — a training-side summary of data parallelism, FSDP/ZeRO, tensor parallelism, pipeline parallelism, and collective behavior that still needs expansion.
-- [`docs/triton/wip_triton_overview_en.md`](triton/wip_triton_overview_en.md) — a Triton/Hopper note on blocked programming, CTA clusters, DSMEM, and the execution model behind custom GPU kernel work.
+- [`docs/compiler/deep-learning-compiler.md`](compiler/deep-learning-compiler.md) — framework/runtime/compiler/backend roles, IR lowering, layout choices, and common low-level optimization ideas.
+
+### `docs/gpu/`
+
+This folder is for hardware-specific GPU notes.
+
+- [`docs/gpu/hopper.md`](gpu/hopper.md) — Hopper features that matter for kernel work, especially clusters, DSMEM, TMA, and async barriers.
+
+### `docs/triton/`
+
+This folder is for custom-kernel notes built around Triton and Hopper-era execution details.
+
+- [`docs/triton/triton_vecadd_tmaload.md`](triton/triton_vecadd_tmaload.md) — a hands-on Triton note using vector add and block pointers to explain launch grids, memory access, and TMA-style loading.
+- [`docs/triton/wip_triton_overview_en.md`](triton/wip_triton_overview_en.md) — WIP overview of Triton, blocked programming, clusters, descriptors, and Hopper-oriented kernel reasoning.

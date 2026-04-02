@@ -2,7 +2,7 @@
 
 ## 1. TPU architecture
 
-![TPU architecture](../../../assets/images/tpu-architecture.png)
+![TPU architecture](../../assets/images/tpu-architecture.png)
 At a high level, a TPU is built around a small number of very large matrix engines rather than thousands of small general-purpose cores.
 
 The diagrams on the first two pages of my original notes helped me form the following mental model:
@@ -14,7 +14,7 @@ The diagrams on the first two pages of my original notes helped me form the foll
 - **On-chip memories and registers** sit between HBM and compute units so data can be staged close to the hardware that will consume it.
 
 A compact way to think about the data path is:
-![TPU data pipeline](../../../assets/images/tpu-data-pipeline.png)
+![TPU data pipeline](../../assets/images/tpu-data-pipeline.png)
 `HBM <-> on-chip memory <-> registers <-> MXU / Vector Unit`
 
 ---
@@ -219,5 +219,5 @@ That is why distributed training strategy matters so much: poor sharding or comm
 
 ## 8. ToDo
 
-- TPU in ternals
+- TPU internals
 - How systolic array works

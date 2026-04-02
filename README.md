@@ -8,10 +8,11 @@ A curated collection of LLM systems notes, reorganized from private study work i
 
 | File | Last updated |
 | --- | --- |
-| [`docs/overview.md`](docs/overview.md) | `2026-03-25` |
+| [`docs/overview.md`](docs/overview.md) | `2026-04-01` |
 | [`docs/jax-ml-scaling/roofline.md`](docs/jax-ml-scaling/roofline.md) | `2026-03-22` |
 | [`docs/jax-ml-scaling/transformer-systems.md`](docs/jax-ml-scaling/transformer-systems.md) | `2026-03-22` |
 | [`docs/jax-ml-scaling/inference-systems.md`](docs/jax-ml-scaling/inference-systems.md) | `2026-03-25` |
+| [`docs/jax-ml-scaling/tpu-systems.md`](docs/jax-ml-scaling/tpu-systems.md) | `2026-04-01` |
 | [`docs/jax-ml-scaling/communication.md`](docs/jax-ml-scaling/communication.md) | `2026-03-25` |
 | [`docs/ml-systems-practice/llm-serving-system-design.md`](docs/ml-systems-practice/llm-serving-system-design.md) | `2026-03-25` |
 | [`docs/ml-systems-practice/llama2-cpp.md`](docs/ml-systems-practice/llama2-cpp.md) | `2026-03-25` |
@@ -22,7 +23,6 @@ A curated collection of LLM systems notes, reorganized from private study work i
 
 | File | Last updated |
 | --- | --- |
-| [`docs/jax-ml-scaling/wip/tpu-systems.md`](docs/jax-ml-scaling/wip/tpu-systems.md) | `2026-03-25` |
 | [`docs/jax-ml-scaling/wip/training-scaling.md`](docs/jax-ml-scaling/wip/training-scaling.md) | `2026-03-25` |
 | [`docs/triton/wip_triton_overview_en.md`](docs/triton/wip_triton_overview_en.md) | `2026-03-29` |
 | [`docs/gpu/hopper.md`](docs/gpu/hopper.md) | `2026-03-27` |

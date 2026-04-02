@@ -12,19 +12,20 @@ The notes are grouped by folder, so the easiest way to read the repo is to treat
 
 ### `docs/jax-ml-scaling/`
 
-This folder is the main path for transformer scaling and systems reasoning: performance models, distributed communication, inference behavior, and hardware-oriented notes about how these workloads map onto TPU execution.
+This folder is the main numbered path for scaling notes: roofline first, then TPU hardware context, then transformer execution, and later inference behavior.
 
-- [`docs/jax-ml-scaling/roofline.md`](jax-ml-scaling/roofline.md) — roofline basics for reasoning about compute, memory bandwidth, and communication bottlenecks.
-- [`docs/jax-ml-scaling/transformer-systems.md`](jax-ml-scaling/transformer-systems.md) — transformer cost structure, attention/MLP behavior, KV-cache growth, and system-level rules of thumb.
-- [`docs/jax-ml-scaling/communication.md`](jax-ml-scaling/communication.md) — collective communication basics and where synchronization shows up in tensor-parallel transformer blocks.
-- [`docs/jax-ml-scaling/tensor-parallelism.md`](jax-ml-scaling/tensor-parallelism.md) — row-parallel vs. column-parallel intuition and where all-reduce appears inside attention and MLP layers.
-- [`docs/jax-ml-scaling/inference-systems.md`](jax-ml-scaling/inference-systems.md) — prefill vs. decode, KV-cache reuse, and the main latency/throughput trade-offs in inference engines.
-- [`docs/jax-ml-scaling/tpu-systems.md`](jax-ml-scaling/tpu-systems.md) — TPU architecture, memory hierarchy, slice/Pod networking, and the performance intuition behind VMEM, ICI, and DCN.
-- [`docs/jax-ml-scaling/wip/training-scaling.md`](jax-ml-scaling/wip/training-scaling.md) — WIP note on training-side scaling, including DP, TP, PP, and collective behavior.
+- [`docs/jax-ml-scaling/1_roofline.md`](jax-ml-scaling/1_roofline.md) — roofline basics for reasoning about compute, memory bandwidth, and communication bottlenecks.
+- [`docs/jax-ml-scaling/2_tpu.md`](jax-ml-scaling/2_tpu.md) — TPU architecture, memory hierarchy, slice/Pod networking, and the performance intuition behind VMEM, ICI, and DCN.
+- [`docs/jax-ml-scaling/4_transformer.md`](jax-ml-scaling/4_transformer.md) — transformer cost structure, attention/MLP behavior, KV-cache growth, and system-level rules of thumb.
+- [`docs/jax-ml-scaling/7_inference.md`](jax-ml-scaling/7_inference.md) — prefill vs. decode, KV-cache reuse, and the main latency/throughput trade-offs in inference engines.
+- [`docs/jax-ml-scaling/5_training.md`](jax-ml-scaling/5_training.md) — training-side scaling note covering DP, TP, PP, and collective behavior; still in progress.
 
 ### `docs/ml-systems-practice/`
 
-This folder is more implementation-facing: concrete serving design choices and code-oriented model notes.
+This folder is more implementation-facing: concrete serving design choices, communication/sharding notes, and code-oriented model notes.
+
+- [`docs/ml-systems-practice/communication.md`](ml-systems-practice/communication.md) — collective communication basics and where synchronization shows up in tensor-parallel transformer blocks.
+- [`docs/ml-systems-practice/tensor-parallelism.md`](ml-systems-practice/tensor-parallelism.md) — row-parallel vs. column-parallel intuition and where all-reduce appears inside attention and MLP layers.
 
 - [`docs/ml-systems-practice/llm-serving-system-design.md`](ml-systems-practice/llm-serving-system-design.md) — practical serving-system design notes around TP/DP/PP, KV-cache layout, paging, batching, and scheduler trade-offs.
 - [`docs/ml-systems-practice/llama2-cpp.md`](ml-systems-practice/llama2-cpp.md) — implementation notes from `llama2.cpp`, focused on config mapping, RoPE, KV-cache layout, and weight tying.

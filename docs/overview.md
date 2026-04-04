@@ -1,6 +1,6 @@
 # Overview
 
-This repo is a systems-oriented set of notes on how LLM workloads actually execute. The throughline is not just model architecture, but the full path from transformer math to hardware behavior: roofline limits, tensor shapes, collective communication, KV-cache growth, serving schedulers, and the compiler/runtime layers that turn graphs into kernels.
+This repo is a systems-oriented set of notes on how LLM workloads actually execute. The throughline is not just model architecture, but the full path from transformer math to hardware behavior: roofline limits, tensor shapes, collective communication, KV-cache growth, serving schedulers, concrete inference-engine internals, and the compiler/runtime layers that turn graphs into kernels.
 
 Most of the writing is organized around one practical question: what is the real bottleneck? Across the docs, that usually means separating compute-bound from bandwidth-bound work, understanding when communication becomes the scaling limit, and tracing how layout, sharding, batching, and runtime choices change end-to-end performance.
 
@@ -19,6 +19,12 @@ This folder is the main numbered path for scaling notes: roofline first, then TP
 - [`docs/jax-ml-scaling/4_transformer.md`](jax-ml-scaling/4_transformer.md) — transformer cost structure, attention/MLP behavior, KV-cache growth, and system-level rules of thumb.
 - [`docs/jax-ml-scaling/7_inference.md`](jax-ml-scaling/7_inference.md) — prefill vs. decode, KV-cache reuse, and the main latency/throughput trade-offs in inference engines.
 - [`docs/jax-ml-scaling/5_training.md`](jax-ml-scaling/5_training.md) — training-side scaling note covering DP, TP, PP, and collective behavior; still in progress.
+
+### `docs/vLLM/`
+
+This folder zooms in on one concrete inference stack: how a production-style engine is decomposed into request processing, scheduling, KV-cache management, model execution, and RPC-facing control layers.
+
+- [`docs/vLLM/anatomy-of-vllm.md`](vLLM/anatomy-of-vllm.md) — vLLM-oriented engine anatomy note covering `EngineCoreRequest`, scheduler behavior, paged KV-cache blocks, model execution, and the role of RPC in larger deployments.
 
 ### `docs/ml-systems-practice/`
 

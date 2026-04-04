@@ -1,6 +1,6 @@
 # LLM Scaling Notes
 
-A curated collection of LLM systems notes, reorganized from private study work into a public repository. The repo focuses on inference, training and scaling, serving, communication, GPU/TPU systems, and compiler/runtime concepts, with an emphasis on hardware-aware reasoning, bottleneck analysis, and performance trade-offs. For the full document guide, start with [`docs/overview.md`](docs/overview.md).
+A curated collection of LLM systems notes, reorganized from private study work into a public repository. The repo focuses on inference, training and scaling, serving, concrete engine internals, communication, GPU/TPU systems, and compiler/runtime concepts, with an emphasis on hardware-aware reasoning, bottleneck analysis, and performance trade-offs. For the full document guide, start with [`docs/overview.md`](docs/overview.md).
 
 ## Checkpoint
 
@@ -8,11 +8,12 @@ A curated collection of LLM systems notes, reorganized from private study work i
 
 | File | Last updated |
 | --- | --- |
-| [`docs/overview.md`](docs/overview.md) | `2026-04-01` |
+| [`docs/overview.md`](docs/overview.md) | `2026-04-04` |
 | [`docs/jax-ml-scaling/1_roofline.md`](docs/jax-ml-scaling/1_roofline.md) | `2026-03-22` |
 | [`docs/jax-ml-scaling/2_tpu.md`](docs/jax-ml-scaling/2_tpu.md) | `2026-04-01` |
 | [`docs/jax-ml-scaling/4_transformer.md`](docs/jax-ml-scaling/4_transformer.md) | `2026-03-22` |
 | [`docs/jax-ml-scaling/7_inference.md`](docs/jax-ml-scaling/7_inference.md) | `2026-03-25` |
+| [`docs/vLLM/anatomy-of-vllm.md`](docs/vLLM/anatomy-of-vllm.md) | `2026-04-04` |
 | [`docs/ml-systems-practice/communication.md`](docs/ml-systems-practice/communication.md) | `2026-03-25` |
 | [`docs/ml-systems-practice/llm-serving-system-design.md`](docs/ml-systems-practice/llm-serving-system-design.md) | `2026-03-25` |
 | [`docs/ml-systems-practice/llama2-cpp.md`](docs/ml-systems-practice/llama2-cpp.md) | `2026-03-25` |

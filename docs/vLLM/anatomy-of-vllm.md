@@ -4,7 +4,7 @@
 
 This note covers the core internals of a production-grade LLM inference engine (based on vLLM architecture), organized into the following topics:
 
-1. **LLM Engine** — scheduling, paged attention, continuous batching
+1. **LLM Engine** — scheduling, paged attention, continuous batching; detailed walkthrough in [`llm-inference-engine.md`](./llm-inference-engine.md)
 2. **Advanced Features** — chunked prefill, prefix caching, guided & speculative decoding, disaggregated prefill/decode
 3. **Scalability** — single GPU → multi-GPU
 4. **Benchmarks & Auto-tuning** — throughput and latency metrics
@@ -22,6 +22,8 @@ This note covers the core internals of a production-grade LLM inference engine (
 ---
 
 ## LLM Engine Architecture
+
+For a dedicated walkthrough of the engine path, see [`llm-inference-engine.md`](./llm-inference-engine.md). This section keeps the architecture view in the broader anatomy note while the separate note expands the step-by-step inference flow.
 
 ![vLLM Engine Architecture](../../assets/images/vllm-llm-engine.png)
 

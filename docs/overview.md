@@ -22,9 +22,10 @@ This folder is the main numbered path for scaling notes: roofline first, then TP
 
 ### `docs/vLLM/`
 
-This folder zooms in on one concrete inference stack: how a production-style engine is decomposed into request processing, scheduling, KV-cache management, model execution, and RPC-facing control layers.
+This folder zooms in on one concrete inference stack: how a production-style engine is decomposed into request processing, scheduling, KV-cache management, model execution, and RPC-facing control layers, plus the concrete per-step mechanics of batching and forward execution.
 
 - [`docs/vLLM/anatomy-of-vllm.md`](vLLM/anatomy-of-vllm.md) — vLLM-oriented engine anatomy note covering `EngineCoreRequest`, scheduler behavior, paged KV-cache blocks, model execution, and the role of RPC in larger deployments.
+- [`docs/vLLM/llm-inference-engine.md`](vLLM/llm-inference-engine.md) — a more detailed inference-engine walkthrough covering request lifecycle, paged KV-cache allocation, continuous batching, chunked prefill, scheduling constraints, distributed inference, and the forward-pass pipeline.
 
 ### `docs/ml-systems-practice/`
 

@@ -14,6 +14,7 @@ A curated collection of LLM systems notes, reorganized from private study work i
 | [`docs/jax-ml-scaling/4_transformer.md`](docs/jax-ml-scaling/4_transformer.md) | `2026-03-22` |
 | [`docs/jax-ml-scaling/7_inference.md`](docs/jax-ml-scaling/7_inference.md) | `2026-03-25` |
 | [`docs/vLLM/anatomy-of-vllm.md`](docs/vLLM/anatomy-of-vllm.md) | `2026-04-04` |
+| [`docs/vLLM/llm-inference-engine.md`](docs/vLLM/llm-inference-engine.md) | `2026-04-04` |
 | [`docs/ml-systems-practice/communication.md`](docs/ml-systems-practice/communication.md) | `2026-03-25` |
 | [`docs/ml-systems-practice/llm-serving-system-design.md`](docs/ml-systems-practice/llm-serving-system-design.md) | `2026-03-25` |
 | [`docs/ml-systems-practice/llama2-cpp.md`](docs/ml-systems-practice/llama2-cpp.md) | `2026-03-25` |

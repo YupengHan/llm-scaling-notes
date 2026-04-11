@@ -22,11 +22,11 @@ This folder is the main numbered path for scaling notes: roofline first, then TP
 
 ### `docs/vLLM/`
 
-This folder zooms in on one concrete inference stack: how a production-style engine is decomposed into request processing, scheduling, KV-cache management, model execution, and RPC-facing control layers, plus the concrete per-step mechanics of batching, forward execution, and advanced serving features.
+This folder zooms in on one concrete inference stack: how a production-style engine is decomposed into request processing, scheduling, KV-cache management, model execution, and RPC-facing control layers, plus the concrete per-step mechanics of batching, forward execution, and advanced serving features such as chunked prefill, prefix caching, and multiple speculative decoding strategies.
 
 - [`docs/vLLM/anatomy-of-vllm.md`](vLLM/anatomy-of-vllm.md) — vLLM-oriented engine anatomy note covering `EngineCoreRequest`, scheduler behavior, paged KV-cache blocks, model execution, and the role of RPC in larger deployments.
 - [`docs/vLLM/llm-inference-engine.md`](vLLM/llm-inference-engine.md) — a more detailed inference-engine walkthrough covering request lifecycle, paged KV-cache allocation, continuous batching, chunked prefill, scheduling constraints, distributed inference, and the forward-pass pipeline.
-- [`docs/vLLM/advance-features.md`](vLLM/advance-features.md) — advanced serving features note covering chunked prefill, prefix caching, speculative decoding, and disaggregated prefill/decode trade-offs.
+- [`docs/vLLM/advance-features.md`](vLLM/advance-features.md) — advanced serving features note covering chunked prefill, prefix caching, speculative decoding, concrete variants such as n-gram, EAGLE, and Medusa, and disaggregated prefill/decode trade-offs.
 
 ### `docs/ml-systems-practice/`
 

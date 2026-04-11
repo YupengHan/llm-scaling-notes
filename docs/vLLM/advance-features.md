@@ -86,6 +86,71 @@ The real gain comes from **reducing the number of target model forward passes** 
 - its distribution must be close enough to the target so the acceptance rate is high
 - the actual gain from speculative decoding depends heavily on draft latency
 
+---
+
+### Variants
+
+Different speculative decoding variants mainly differ in how they produce candidate continuations before the target model verifies them.
+
+#### N-gram
+
+**Idea:** take the last `n` tokens of the current sequence, starting from `prompt_lookup_max`, and search for a matching n-gram in the past context.
+
+- If a match is found, propose the next `k` tokens that followed that match.
+- If not, shrink the window down to `prompt_lookup_min` and retry.
+
+**Key insight:** this is lookup-based rather than prediction-based. There is no draft model and no extra forward pass. The system simply reuses previously seen continuations.
+
+**Why it speeds up**
+
+- Proposal cost is close to zero.
+- It works well when outputs contain repeated patterns, for example summarization, QA, or code generation.
+
+**Limitations**
+
+- It depends heavily on repetition.
+- It performs poorly for open-ended generation.
+
+---
+
+#### EAGLE
+
+**Idea:** instead of predicting tokens directly, train a lightweight drafter to predict the target model's hidden features, then generate token proposals from those features.
+
+**Key insight:**
+
+- Autoregression in feature space can be easier than in token space.
+- A one-step-ahead design helps stabilize feature prediction.
+
+**Why it speeds up**
+
+- It replaces an expensive draft LM with a cheaper feature predictor.
+- It is usually more accurate than heuristic methods such as n-gram lookup.
+
+**Clarification**
+
+- This is not just "replace a transformer with an MLP."
+- The core idea is feature-level extrapolation, not architecture simplification.
+
+---
+
+#### Medusa
+
+**Idea:** attach multiple lightweight decoding heads to the base model so it can predict several future tokens in parallel from the same hidden state.
+
+**Key insight:**
+
+- There is no separate draft model.
+- The base model uses multi-head token prediction plus tree-based verification.
+
+**Why it speeds up**
+
+- It generates multiple token candidates in one forward pass.
+- It avoids running a separate draft model.
+- The target model still verifies candidates in parallel.
+
+---
+
 ## Disaggregated Prefill / Decode
 
 ![Disaggregated prefill and decode](../../assets/images/vllm-disaggregated-prefill-decode-architecture.png)

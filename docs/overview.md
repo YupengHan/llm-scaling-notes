@@ -55,4 +55,5 @@ This folder is for hardware-specific GPU notes.
 This folder is for custom-kernel notes built around Triton and Hopper-era execution details.
 
 - [`docs/triton/triton_vecadd_tmaload.md`](triton/triton_vecadd_tmaload.md) — a hands-on Triton note using vector add and block pointers to explain launch grids, memory access, and TMA-style loading.
+- [`docs/triton/triton_fused_softmax.md`](triton/triton_fused_softmax.md) — a Triton fused softmax walkthrough covering why fusion helps, how the launch wrapper estimates occupancy, and what `num_warps` and `num_stages` really control.
 - [`docs/triton/wip_triton_overview_en.md`](triton/wip_triton_overview_en.md) — WIP overview of Triton, blocked programming, clusters, descriptors, and Hopper-oriented kernel reasoning.
